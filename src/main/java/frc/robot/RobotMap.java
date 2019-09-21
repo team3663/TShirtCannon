@@ -36,6 +36,10 @@ public class RobotMap
   public static final int UPPER_ARM_SWITCH = 0;
   public static final int LOWER_ARM_SWITCH = 1;
 
+  //DIO
+  public static final int FLASHY_LINE_ONE = 0;
+  public static final int FLASHY_LINE_TWO = 1;
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
