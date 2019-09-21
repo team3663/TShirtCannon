@@ -12,11 +12,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-public class SS_Arm extends Subsystem 
+public class SS_Barrel extends Subsystem 
 {
     //0 degrees is forwards, 90 degrees is up
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
+    private static final double SAFE_CURRENT = 3;
 
     //motors
     private TalonSRX leadMotor;
@@ -33,11 +34,11 @@ public class SS_Arm extends Subsystem
     private int upperSoftLimit;
     private int lowerSoftLimit;
 
-    public SS_Arm()
+    public SS_Barrel()
     {
         //init motors
-        leadMotor = new TalonSRX(RobotMap.LEAD_ARM_MOTOR);
-        followMotor = new TalonSRX(RobotMap.FOLLOW_ARM_MOTOR);
+        leadMotor = new TalonSRX(RobotMap.LEAD_BARREL_ANGLE_MOTOR);
+        followMotor = new TalonSRX(RobotMap.FOLLOW_BARREL_ANGLE_MOTOR);
         followMotor.follow(leadMotor);
 
         //init limit switches
@@ -97,5 +98,11 @@ public class SS_Arm extends Subsystem
     public int getAngle()
     {
         return 0; //TODO
+    }
+    
+    public boolean isSafeVoltage()
+    {
+        //take the avarage current of the two motors and see if it is a safe current
+        return (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2 <= SAFE_CURRENT;
     }
 }
