@@ -93,7 +93,7 @@ public class C_RotateBarrel extends Command
     {
       return false;
     }
-    else if(barrel.isSafeVoltage())
+    else if(barrel.isSafeCurrent())
     {
       currentTimer.reset();
       return true;
