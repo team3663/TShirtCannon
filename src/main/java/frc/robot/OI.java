@@ -42,7 +42,7 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  public static final int GAMEPAD_1 = 0;
+  public static final int GAMEPAD = 0;
   //josyticks
   public static final int LSTICK_X_AXIS = 0;
   public static final int LSTICK_Y_AXIS = 1;
@@ -55,5 +55,47 @@ public class OI {
 
   public static final int BUTTON_A = 1;
 
-  public Joystick gamepadOne = new Joystick(RobotMap.GAMEPAD_ONE);
+  private Joystick gamepad = new Joystick(RobotMap.GAMEPAD);
+
+  public Joystick getGamepad() 
+  {
+    return gamepad;
+  }
 }
+
+/*
+ * 1 = A
+ *
+ * 2 = B
+ *
+ * 3 = X
+ *
+ * 4 = Y
+ *
+ * 5 = LEFT-BUMPER
+ *
+ * 6 = RIGHT-BUMPER
+ *
+ * 7 = BACK
+ *
+ * 8 = START
+ *
+ * 9 = LEFT-STICK
+ *
+ * 10 = RIGHT-STICK
+ *
+ * as a side note please refrain from using 9-10 because the can cause issues
+ * with commands using the stick axis AXIS ARE AS FOLLOWS
+ *
+ * 0 = LEFT-X-AXIS
+ *
+ * 1 = LEFT-Y-AXIS
+ *
+ * 2 = LEFT-TRIGGER
+ *
+ * 3 = RIGHT-TRIGGER
+ *
+ * 4 = RIGHT-X-AXIS
+ *
+ * 5 = RIGHT-Y-AXIS
+ */

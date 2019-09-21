@@ -7,6 +7,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -62,6 +63,18 @@ public class SS_Barrel extends Subsystem
     public void move(double speed)
     {
         leadMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void setBrakeMode(boolean isBrakeMode)
+    {
+        if(isBrakeMode) 
+        {
+            leadMotor.setNeutralMode(NeutralMode.Brake);
+        } 
+        else 
+        {
+            leadMotor.setNeutralMode(NeutralMode.Coast);
+        }
     }
 
     public void stop()

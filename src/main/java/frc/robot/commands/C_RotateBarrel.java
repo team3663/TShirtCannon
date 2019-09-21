@@ -15,9 +15,7 @@ import frc.robot.Robot;
 import frc.robot.subsystems.SS_Barrel;
 import frc.robot.util.ElapsedTime;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class C_RotateBarrel extends Command
 {
   private SS_Barrel barrel;
@@ -26,8 +24,8 @@ public class C_RotateBarrel extends Command
 
   public C_RotateBarrel() 
   {
-    requires(Robot.ss_Barrel);
-    barrel = Robot.ss_Barrel;
+    requires(Robot.getBarrel());
+    barrel = Robot.getBarrel();
     currentTimer = new ElapsedTime();
   }
 
@@ -42,7 +40,7 @@ public class C_RotateBarrel extends Command
   @Override
   protected void execute() 
   {
-    double speed = deadzone(Robot.oi.gamepadOne.getRawAxis(OI.RSTICK_Y_AXIS));
+    double speed = deadzone(Robot.getOI().getGamepad().getRawAxis(OI.RSTICK_Y_AXIS));
 
     if(!safeCurrent() || speed == 0)
     {

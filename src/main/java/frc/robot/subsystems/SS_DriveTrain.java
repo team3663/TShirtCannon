@@ -9,8 +9,7 @@ import frc.robot.commands.C_Drive;
 
 public class SS_DriveTrain extends Subsystem 
 {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
   TalonSRX leftMotorFront = new TalonSRX(RobotMap.LF_MOTOR);     // CAN Bus DeviceID 0 is the left drive motor
   TalonSRX leftMotorRear = new TalonSRX(RobotMap.LR_MOTOR);
   TalonSRX rightMotorFront = new TalonSRX(RobotMap.RF_MOTOR);    // CAN Bus DeviceID 1 is the right drive motor
@@ -19,8 +18,6 @@ public class SS_DriveTrain extends Subsystem
   @Override
   public void initDefaultCommand() 
   {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new C_Drive());
   }
 

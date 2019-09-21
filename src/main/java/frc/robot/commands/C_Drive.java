@@ -6,9 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class C_Drive extends Command 
 {
   private Joystick gamepad;
@@ -16,8 +14,8 @@ public class C_Drive extends Command
   {
     // Use requires() here to declare subsystem dependencies
     //requires(Robot.m_subsystem);
-    requires(Robot.ss_DriveTrain);
-    gamepad = Robot.oi.gamepadOne;
+    requires(Robot.getDriveTrain());
+    gamepad = Robot.getOI().getGamepad();
   }
 
   // Called just before this Command runs the first time
@@ -55,7 +53,7 @@ public class C_Drive extends Command
       rightSpeed = speed;
     }
 
-    Robot.ss_DriveTrain.drive(leftSpeed, rightSpeed);
+    Robot.getDriveTrain().drive(leftSpeed, rightSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

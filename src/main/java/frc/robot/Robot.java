@@ -19,8 +19,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.SS_Barrel;
 import frc.robot.subsystems.SS_DriveTrain;
 
@@ -37,11 +35,10 @@ import com.ctre.phoenix.motorcontrol.can.*;
  */
 public class Robot extends TimedRobot 
 {
-  public static SS_DriveTrain ss_DriveTrain = new SS_DriveTrain();
-  public static SS_Barrel ss_Barrel = new SS_Barrel();
-  public static OI oi;
+  private static SS_DriveTrain ss_DriveTrain;
+  private static SS_Barrel ss_Barrel;
+  private static OI oi;
 
-  //Command m_autonomousCommand;
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   //WPI_TalonSRX _talonL1 = new WPI_TalonSRX(RobotMap.L1_MOTOR);
@@ -64,12 +61,27 @@ public class Robot extends TimedRobot
   public void robotInit() 
   {
     
-    //chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    ss_DriveTrain = new SS_DriveTrain();
+    ss_Barrel = new SS_Barrel();
 
     oi = new OI(); // oi must be initilized last PLEASE
   }
 
+  public static SS_DriveTrain getDriveTrain() 
+  {
+    return ss_DriveTrain;
+  }
+
+  public static SS_Barrel getBarrel()
+  {
+    return ss_Barrel;
+  }
+
+  public static OI getOI() 
+  {
+    return oi;
+  }
+ 
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,
