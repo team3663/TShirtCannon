@@ -10,11 +10,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.C_RotateBarrel;
 
 public class SS_Barrel extends Subsystem 
 {
     //0 degrees is forwards, 90 degrees is up
+    //positive power is forwards
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
     private static final double SAFE_CURRENT = 3;
@@ -53,8 +56,7 @@ public class SS_Barrel extends Subsystem
     @Override
     public void initDefaultCommand() 
     {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new C_RotateBarrel());
     }
 
     public void move(double speed)
@@ -97,12 +99,13 @@ public class SS_Barrel extends Subsystem
 
     public int getAngle()
     {
-        return 0; //TODO
+        return 10; //TODO
     }
     
     public boolean isSafeVoltage()
     {
         //take the avarage current of the two motors and see if it is a safe current
+        SmartDashboard.putNumber("Barrel Current", (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2);
         return (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2 <= SAFE_CURRENT;
     }
 }

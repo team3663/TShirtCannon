@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.SS_Barrel;
 import frc.robot.subsystems.SS_DriveTrain;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -37,6 +38,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 public class Robot extends TimedRobot 
 {
   public static SS_DriveTrain ss_DriveTrain = new SS_DriveTrain();
+  public static SS_Barrel ss_Barrel = new SS_Barrel();
   public static OI oi;
 
   //Command m_autonomousCommand;
