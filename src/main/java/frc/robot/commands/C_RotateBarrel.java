@@ -45,20 +45,21 @@ public class C_RotateBarrel extends Command
   {
     double speed = deadzone(Robot.oi.gamepadOne.getRawAxis(OI.RSTICK_Y_AXIS));
 
-    if(!safeCurrent() || speed == 0)
+
+    if(!safeCurrent() || speed == 0 //current is unsafe or speed is 0
+      || (barrel.getUpperLimitHit() && speed > 0) //at upper limit and speed is going up
+      || (barrel.getLowerLimitHit() && speed < 0)) //at lower limit and speed is going down
     {
       barrel.stop();
     }
-    else if(barrel.getUpperLimitHit() && speed < 0)
+    else
     {
       barrel.move(speed);
     }
-    else if(barrel.getLowerLimitHit() && speed > 0)
-    {
-      barrel.move(speed);
-    }
-
   }
+
+  // (condiion 1)
+  // || (condition)
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
