@@ -10,10 +10,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.C_RotateBarrel;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class SS_Barrel extends Subsystem 
 {
@@ -22,10 +24,15 @@ public class SS_Barrel extends Subsystem
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
     private static final double SAFE_CURRENT = 3;
+    private static final int ANGLE_GEAR_RATIO = 1; //TODO
+    private static final double DEFAULT_SPEED = 0.25;
 
     //motors
     private TalonSRX leadMotor;
     private TalonSRX followMotor;
+
+    //encoder
+    private final Encoder encoder = new Encoder(RobotMap.BARREL_ENCODER_DIO_ONE, RobotMap.BARREL_ENCODER_DIO_TWO);
 
     //limit switches
     private DigitalInput upperLimit;
@@ -63,6 +70,11 @@ public class SS_Barrel extends Subsystem
         setDefaultCommand(new C_RotateBarrel());
     }
 
+    public void moveConstant(double speed)
+    {
+        leadMotor.set(ControlMode.PercentOutput, Math.signum(speed) * DEFAULT_SPEED);
+    }
+
     public void move(double speed)
     {
         leadMotor.set(ControlMode.PercentOutput, speed);
@@ -82,7 +94,7 @@ public class SS_Barrel extends Subsystem
 
     public void stop()
     {
-        move(0);
+        moveConstant(0);
     }
 
     public boolean getUpperLimitHit()
@@ -115,10 +127,12 @@ public class SS_Barrel extends Subsystem
 
     public int getAngle()
     {
-        return 10; //TODO
+        // SmartDashboard.putNumber("Barrel Encoder", encoder.get());
+        // return encoder.get() * ANGLE_GEAR_RATIO;
+        return 20; //TODO
     }
     
-    public boolean isSafeVoltage()
+    public boolean isSafeCurrent()
     {
         //take the avarage current of the two motors and see if it is a safe current
         SmartDashboard.putNumber("Barrel Current", (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2);

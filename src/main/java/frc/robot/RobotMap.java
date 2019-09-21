@@ -29,8 +29,8 @@ public class RobotMap
   public static final int RR_MOTOR = 2;
   public static final int RF_MOTOR = 3;
 
-  public static final int LEAD_BARREL_ANGLE_MOTOR = 4; //TODO
-  public static final int FOLLOW_BARREL_ANGLE_MOTOR = 5; //TODO
+  public static final int LEAD_BARREL_ANGLE_MOTOR = 15; //TODO
+  public static final int FOLLOW_BARREL_ANGLE_MOTOR = 16; //TODO
 
   //Limit swithces
   public static final int UPPER_ARM_SWITCH = 0;
@@ -39,7 +39,8 @@ public class RobotMap
   //DIO
   public static final int FLASHY_LINE_ONE = 0;
   public static final int FLASHY_LINE_TWO = 1;
-
+  public static final int BARREL_ENCODER_DIO_ONE = 2;
+  public static final int BARREL_ENCODER_DIO_TWO = 3;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

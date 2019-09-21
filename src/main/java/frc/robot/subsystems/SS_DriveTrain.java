@@ -13,7 +13,7 @@ public class SS_DriveTrain extends Subsystem
   TalonSRX leftMotorFront = new TalonSRX(RobotMap.LF_MOTOR);     // CAN Bus DeviceID 0 is the left drive motor
   TalonSRX leftMotorRear = new TalonSRX(RobotMap.LR_MOTOR);
   TalonSRX rightMotorFront = new TalonSRX(RobotMap.RF_MOTOR);    // CAN Bus DeviceID 1 is the right drive motor
-  TalonSRX rightMotorRear = new TalonSRX(RobotMap.RR_MOTOR); 
+  TalonSRX rightMotorRear = new TalonSRX(RobotMap.RR_MOTOR);
 
   @Override
   public void initDefaultCommand() 
