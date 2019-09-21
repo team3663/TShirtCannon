@@ -36,6 +36,9 @@ public class RobotMap
   public static final int UPPER_ARM_SWITCH = 0;
   public static final int LOWER_ARM_SWITCH = 1;
 
+  //DIO
+  public static final int BARREL_ENCODER_DIO_ONE = 2;
+  public static final int BARREL_ENCODER_DIO_TWO = 3;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
