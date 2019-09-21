@@ -43,10 +43,15 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
 
   public static final int GAMEPAD_1 = 0;
+  //josyticks
   public static final int LSTICK_X_AXIS = 0;
   public static final int LSTICK_Y_AXIS = 1;
   public static final int RSTICK_X_AXIS = 4;
   public static final int RSTICK_Y_AXIS = 5;
+  //triggers
+  public static final int LTRIGGER_AXIS = 2;
+  public static final int RTRIGGER_AXIS = 3;
+
 
   public static final int BUTTON_A = 1;
 

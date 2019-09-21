@@ -11,12 +11,13 @@ import frc.robot.*;
  */
 public class C_Drive extends Command 
 {
-  
+  private Joystick gamepad;
   public C_Drive() 
   {
     // Use requires() here to declare subsystem dependencies
     //requires(Robot.m_subsystem);
     requires(Robot.ss_DriveTrain);
+    gamepad = Robot.oi.gamepadOne;
   }
 
   // Called just before this Command runs the first time
@@ -27,10 +28,32 @@ public class C_Drive extends Command
   @Override
   protected void execute() 
   {
-    // move drive code from Robot.java here....
-      
-    double leftSpeed = Math.pow(Robot.oi.gamepadOne.getRawAxis(OI.LSTICK_Y_AXIS) , 2) * Math.signum(Robot.oi.gamepadOne.getRawAxis(OI.LSTICK_Y_AXIS)); // make forward stick positive
-    double rightSpeed = Math.pow(Robot.oi.gamepadOne.getRawAxis(OI.RSTICK_Y_AXIS) , 2) * Math.signum(Robot.oi.gamepadOne.getRawAxis(OI.RSTICK_Y_AXIS));
+    //tank drive code   
+    // double leftSpeed = Math.pow(gamepad.getRawAxis(OI.LSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.LSTICK_Y_AXIS)); // make forward stick positive
+    // double rightSpeed = Math.pow(gamepad.getRawAxis(OI.RSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.RSTICK_Y_AXIS));
+
+    //arcade dirve
+    double steer = gamepad.getRawAxis(OI.LSTICK_Y_AXIS);
+    double speed = gamepad.getRawAxis(OI.RTRIGGER_AXIS) - gamepad.getRawAxis(OI.LTRIGGER_AXIS);
+    double leftSpeed = 0;
+    double rightSpeed = 0;
+
+    //calculations for arcade drive
+    if(steer > 0)
+    {
+      leftSpeed = speed;
+      rightSpeed = (0.5 - steer) * speed * 2;
+    }
+    else if(steer < 0)
+    {
+      leftSpeed = (0.5 - steer) * speed * 2;
+      rightSpeed = speed;
+    }
+    else
+    {
+      leftSpeed = speed;
+      rightSpeed = speed;
+    }
 
     Robot.ss_DriveTrain.drive(leftSpeed, rightSpeed);
   }

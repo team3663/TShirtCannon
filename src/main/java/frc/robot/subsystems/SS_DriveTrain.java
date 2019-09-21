@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.C_Drive;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
 public class SS_DriveTrain extends Subsystem 
 {
   // Put methods for controlling this subsystem

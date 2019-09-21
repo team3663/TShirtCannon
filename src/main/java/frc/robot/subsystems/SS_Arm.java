@@ -1,27 +1,33 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class SS_Arm extends Subsystem 
 {
+    //0 degrees is forwards, 90 degrees is up
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
 
     //motors
-    private CANSparkMax mainMotor;
-    private CANSparkMax followMotor;
+    private TalonSRX leadMotor;
+    private TalonSRX followMotor;
 
     //limit switches
     private DigitalInput upperLimit;
     private DigitalInput lowerLimit;
 
-    //angle potentiometer
-    private AnalogPotentiometer anglePot;
+    //Encoder
+    //private ;
 
     //software limits
     private int upperSoftLimit;
@@ -30,25 +36,34 @@ public class SS_Arm extends Subsystem
     public SS_Arm()
     {
         //init motors
-        mainMotor = new CANSparkMax(RobotMap.LEAD_ARM_MOTOR, MotorType.kBrushless);
-        followMotor = new CANSparkMax(RobotMap.FOLLOW_ARM_MOTOR, MotorType.kBrushless);
-        followMotor.follow(mainMotor);
+        leadMotor = new TalonSRX(RobotMap.LEAD_ARM_MOTOR);
+        followMotor = new TalonSRX(RobotMap.FOLLOW_ARM_MOTOR);
+        followMotor.follow(leadMotor);
 
         //init limit switches
         upperLimit = new DigitalInput(RobotMap.UPPER_ARM_SWITCH);
         lowerLimit = new DigitalInput(RobotMap.LOWER_ARM_SWITCH);
-
-        //init angle potentiometer
-        anglePot = new AnalogPotentiometer(RobotMap.ARM_POTENTIOMETER, 360, 30); //TODO
 
         //init software limits
         upperSoftLimit = DEFAULT_UPPER_SOFT_LIMIT;
         lowerSoftLimit = DEFAULT_LOWER_SOFT_LIMIT;
     }
 
-    public void moveArm(double speed)
+    @Override
+    public void initDefaultCommand() 
     {
-        mainMotor.set(speed);
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+    }
+
+    public void move(double speed)
+    {
+        leadMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void stop()
+    {
+        move(0);
     }
 
     public boolean getUpperLimitHit()
@@ -81,13 +96,6 @@ public class SS_Arm extends Subsystem
 
     public int getAngle()
     {
-        return (int)anglePot.get(); //TODO
-    }
-
-    @Override
-    public void initDefaultCommand() 
-    {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+        return 0; //TODO
     }
 }
