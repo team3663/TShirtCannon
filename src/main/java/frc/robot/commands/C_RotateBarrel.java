@@ -8,8 +8,10 @@
 package frc.robot.commands;
 
 import javax.lang.model.util.ElementScanner6;
+import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.SS_Barrel;
@@ -43,16 +45,17 @@ public class C_RotateBarrel extends Command
   {
     double speed = deadzone(Robot.getOI().getGamepad().getRawAxis(OI.RSTICK_Y_AXIS));
 
-
     if(!safeCurrent() || speed == 0 //current is unsafe or speed is 0
       || (barrel.getUpperLimitHit() && speed > 0) //at upper limit and speed is going up
       || (barrel.getLowerLimitHit() && speed < 0)) //at lower limit and speed is going down
     {
       barrel.stop();
+      SmartDashboard.putBoolean("moveBarell", false);
     }
     else
     {
-      barrel.move(speed);
+      barrel.moveConstant(speed);
+      SmartDashboard.putBoolean("moveBarell", true);
     }
   }
 

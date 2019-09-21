@@ -25,6 +25,7 @@ public class SS_Barrel extends Subsystem
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
     private static final double SAFE_CURRENT = 3;
     private static final int ANGLE_GEAR_RATIO = 1; //TODO
+    private static final double DEFAULT_SPEED = 0.25;
 
     //motors
     private TalonSRX leadMotor;
@@ -69,6 +70,11 @@ public class SS_Barrel extends Subsystem
         setDefaultCommand(new C_RotateBarrel());
     }
 
+    public void moveConstant(double speed)
+    {
+        leadMotor.set(ControlMode.PercentOutput, Math.signum(speed) * DEFAULT_SPEED);
+    }
+
     public void move(double speed)
     {
         leadMotor.set(ControlMode.PercentOutput, speed);
@@ -88,7 +94,7 @@ public class SS_Barrel extends Subsystem
 
     public void stop()
     {
-        move(0);
+        moveConstant(0);
     }
 
     public boolean getUpperLimitHit()
@@ -121,8 +127,9 @@ public class SS_Barrel extends Subsystem
 
     public int getAngle()
     {
-        SmartDashboard.putNumber("Barrel Encoder", encoder.get());
-        return encoder.get() * ANGLE_GEAR_RATIO;
+        // SmartDashboard.putNumber("Barrel Encoder", encoder.get());
+        // return encoder.get() * ANGLE_GEAR_RATIO;
+        return 20; //TODO
     }
     
     public boolean isSafeCurrent()
