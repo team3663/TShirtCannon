@@ -31,7 +31,7 @@ public class C_Drive extends Command
     // double rightSpeed = Math.pow(gamepad.getRawAxis(OI.RSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.RSTICK_Y_AXIS));
 
     //arcade drive
-    double steer = gamepad.getRawAxis(OI.LSTICK_Y_AXIS);
+    double steer = gamepad.getRawAxis(OI.LSTICK_X_AXIS);
     double speed = gamepad.getRawAxis(OI.RTRIGGER_AXIS) - gamepad.getRawAxis(OI.LTRIGGER_AXIS);
     double leftSpeed = 0;
     double rightSpeed = 0;
