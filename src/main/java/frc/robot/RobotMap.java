@@ -29,8 +29,8 @@ public class RobotMap
   public static final int RR_MOTOR = 2;
   public static final int RF_MOTOR = 3;
 
-  public static final int LEAD_BARREL_ANGLE_MOTOR = 4; //TODO
-  public static final int FOLLOW_BARREL_ANGLE_MOTOR = 5; //TODO
+  public static final int LEAD_BARREL_ANGLE_MOTOR = 15; //TODO
+  public static final int FOLLOW_BARREL_ANGLE_MOTOR = 16; //TODO
 
   //Limit swithces
   public static final int UPPER_ARM_SWITCH = 0;
