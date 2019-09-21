@@ -7,6 +7,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -42,6 +43,9 @@ public class SS_Barrel extends Subsystem
         //init motors
         leadMotor = new TalonSRX(RobotMap.LEAD_BARREL_ANGLE_MOTOR);
         followMotor = new TalonSRX(RobotMap.FOLLOW_BARREL_ANGLE_MOTOR);
+        leadMotor.setNeutralMode(NeutralMode.Brake);
+        followMotor.setNeutralMode(NeutralMode.Brake);
+
         followMotor.follow(leadMotor);
 
         //init limit switches
