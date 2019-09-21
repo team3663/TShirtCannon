@@ -21,8 +21,9 @@ import frc.robot.util.ElapsedTime;
 public class C_RotateBarrel extends Command
 {
   private SS_Barrel barrel;
-  private static final double DEADZONE = 0.05;
+  private static final double DEADZONE = 0.15;
   private ElapsedTime currentTimer;
+  private boolean cutPower = false;
 
   public C_RotateBarrel() 
   {
@@ -81,6 +82,7 @@ public class C_RotateBarrel extends Command
   {
     if(Math.abs(input) <= DEADZONE)
     {
+      cutPower = false;
       return 0;
     }
     return input;
@@ -88,7 +90,11 @@ public class C_RotateBarrel extends Command
 
   private boolean safeCurrent()
   {
-    if(barrel.isSafeVoltage())
+    if(cutPower)
+    {
+      return false;
+    }
+    else if(barrel.isSafeVoltage())
     {
       currentTimer.reset();
       return true;
@@ -97,6 +103,7 @@ public class C_RotateBarrel extends Command
     {
       return true;
     }
+    cutPower = true;
     return false;
   }
 }
