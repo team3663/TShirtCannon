@@ -47,8 +47,16 @@ public class C_RotateBarrel extends Command
     if(!safeCurrent() || speed == 0)
     {
       barrel.stop();
-      return;
     }
+    else if(barrel.getUpperLimitHit() && speed < 0)
+    {
+      barrel.move(speed);
+    }
+    else if(barrel.getLowerLimitHit() && speed > 0)
+    {
+      barrel.move(speed);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

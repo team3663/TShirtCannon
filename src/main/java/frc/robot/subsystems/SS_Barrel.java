@@ -17,7 +17,7 @@ import frc.robot.commands.C_RotateBarrel;
 public class SS_Barrel extends Subsystem 
 {
     //0 degrees is forwards, 90 degrees is up
-    //positive power is forwards
+    //positive power is upwards
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
     private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
     private static final double SAFE_CURRENT = 3;
