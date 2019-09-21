@@ -25,9 +25,9 @@ public class SS_DriveTrain extends Subsystem
 
   public void drive(double leftSpeed, double rightSpeed)
   {
-    leftMotorFront.set(ControlMode.PercentOutput, -1 * leftSpeed);
-    leftMotorRear.set(ControlMode.PercentOutput, -1 * leftSpeed);
-    rightMotorFront.set(ControlMode.PercentOutput, rightSpeed);
-    rightMotorRear.set(ControlMode.PercentOutput, rightSpeed);
+    leftMotorFront.set(ControlMode.PercentOutput,leftSpeed);
+    leftMotorRear.set(ControlMode.PercentOutput, leftSpeed);
+    rightMotorFront.set(ControlMode.PercentOutput, -1 * rightSpeed);
+    rightMotorRear.set(ControlMode.PercentOutput, -1 * rightSpeed);
   }
 }

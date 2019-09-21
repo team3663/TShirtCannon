@@ -40,11 +40,11 @@ public class C_Drive extends Command
     if(steer > 0)
     {
       leftSpeed = speed;
-      rightSpeed = (0.5 - steer) * speed * 2;
+      rightSpeed = (0.5 - Math.abs(steer)) * speed * 2;
     }
     else if(steer < 0)
     {
-      leftSpeed = (0.5 - steer) * speed * 2;
+      leftSpeed = (0.5 - Math.abs(steer)) * speed * 2;
       rightSpeed = speed;
     }
     else
