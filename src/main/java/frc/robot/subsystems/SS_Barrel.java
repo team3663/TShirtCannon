@@ -39,7 +39,7 @@ public class SS_Barrel extends Subsystem
     private DigitalInput lowerLimit;
 
     //Encoder
-    //private ;
+    private Encoder encoder;
 
     //software limits
     private int upperSoftLimit;
@@ -62,6 +62,9 @@ public class SS_Barrel extends Subsystem
         //init software limits
         upperSoftLimit = DEFAULT_UPPER_SOFT_LIMIT;
         lowerSoftLimit = DEFAULT_LOWER_SOFT_LIMIT;
+
+        //init encoder
+        encoder = new Encoder(RobotMap.BARREL_ENCODER_A, RobotMap.BARREL_ENCODER_B);
     }
 
     @Override
@@ -85,10 +88,12 @@ public class SS_Barrel extends Subsystem
         if(isBrakeMode) 
         {
             leadMotor.setNeutralMode(NeutralMode.Brake);
+            followMotor.setNeutralMode(NeutralMode.Brake);
         } 
         else 
         {
             leadMotor.setNeutralMode(NeutralMode.Coast);
+            followMotor.setNeutralMode(NeutralMode.Coast);
         }
     }
 

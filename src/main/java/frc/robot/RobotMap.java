@@ -32,11 +32,15 @@ public class RobotMap
   public static final int LEAD_BARREL_ANGLE_MOTOR = 15; //TODO
   public static final int FOLLOW_BARREL_ANGLE_MOTOR = 16; //TODO
 
-  //Limit swithces
+  //DIO
   public static final int UPPER_ARM_SWITCH = 0;
   public static final int LOWER_ARM_SWITCH = 1;
+  public static final int BARREL_ENCODER_A = -1;
+  public static final int BARREL_ENCODER_B = -1;
 
   //DIO
+  public static final int FLASHY_LINE_ONE = 0;
+  public static final int FLASHY_LINE_TWO = 1;
   public static final int BARREL_ENCODER_DIO_ONE = 2;
   public static final int BARREL_ENCODER_DIO_TWO = 3;
 
