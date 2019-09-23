@@ -37,6 +37,7 @@ public class Robot extends TimedRobot
   private static SS_DriveTrain ss_DriveTrain;
   private static SS_Barrel ss_Barrel;
   private static SS_Billboard ss_Billboard;
+  private static SS_PneumaticSystem ss_PneumaticSystem;
   private static OI oi;
 
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot
     ss_DriveTrain = new SS_DriveTrain();
     ss_Barrel = new SS_Barrel();
     ss_Billboard = new SS_Billboard();
+    ss_PneumaticSystem = new SS_PneumaticSystem();
 
     oi = new OI(); // oi must be initilized last PLEASE
   }
@@ -80,6 +82,10 @@ public class Robot extends TimedRobot
 
   public static SS_Billboard getBillboard() {
     return ss_Billboard;
+  }
+
+  public static SS_PneumaticSystem getPneumaticSystem() {
+    return ss_PneumaticSystem;
   }
 
   public static OI getOI() 

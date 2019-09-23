@@ -31,8 +31,6 @@ public class SS_Barrel extends Subsystem
     private TalonSRX leadMotor;
     private TalonSRX followMotor;
 
-    //encoder
-    private final Encoder encoder = new Encoder(RobotMap.BARREL_ENCODER_DIO_ONE, RobotMap.BARREL_ENCODER_DIO_TWO);
 
     //limit switches
     private DigitalInput upperLimit;
