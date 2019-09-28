@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.*;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -55,8 +58,15 @@ public class OI {
 
   public static final int BUTTON_A = 1;
 
-  private Joystick gamepad = new Joystick(RobotMap.GAMEPAD);
+  private Joystick gamepad;
 
+  public void registerControls() 
+  {
+    gamepad = new Joystick(RobotMap.GAMEPAD);
+
+    final Button AButton = new JoystickButton(gamepad, BUTTON_A);
+    AButton.whenPressed(new C_Recharge());
+  }
   public Joystick getGamepad() 
   {
     return gamepad;

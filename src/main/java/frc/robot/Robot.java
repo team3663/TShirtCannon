@@ -68,6 +68,7 @@ public class Robot extends TimedRobot
     ss_PneumaticSystem = new SS_PneumaticSystem();
 
     oi = new OI(); // oi must be initilized last PLEASE
+    oi.registerControls();
   }
 
   public static SS_DriveTrain getDriveTrain() 
