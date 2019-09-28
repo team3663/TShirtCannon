@@ -54,7 +54,9 @@ public class OI {
   //triggers
   public static final int LTRIGGER_AXIS = 2;
   public static final int RTRIGGER_AXIS = 3;
-
+  //bumpers
+  public static final int LBUMPER = 5;
+  public static final int RBUMPER = 6;
 
   public static final int BUTTON_A = 1;
 

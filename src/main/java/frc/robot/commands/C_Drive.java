@@ -10,6 +10,7 @@ import frc.robot.*;
 public class C_Drive extends Command 
 {
   private Joystick gamepad;
+  
   public C_Drive() 
   {
     // Use requires() here to declare subsystem dependencies
@@ -29,6 +30,8 @@ public class C_Drive extends Command
     //tank drive code   
     // double leftSpeed = Math.pow(gamepad.getRawAxis(OI.LSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.LSTICK_Y_AXIS)); // make forward stick positive
     // double rightSpeed = Math.pow(gamepad.getRawAxis(OI.RSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.RSTICK_Y_AXIS));
+
+    shift();
 
     //arcade drive
     double steer = gamepad.getRawAxis(OI.LSTICK_X_AXIS);
@@ -54,6 +57,19 @@ public class C_Drive extends Command
     }
 
     Robot.getDriveTrain().drive(leftSpeed, rightSpeed);
+  }
+
+  private void shift()
+  {
+    //the order is intentional since if both bumpers are pressed, it will shift down
+    if(gamepad.getRawButton(OI.RBUMPER))
+    {
+      Robot.getDriveTrain().shift(true);
+    }
+    if(gamepad.getRawButton(OI.LBUMPER))
+    {
+      Robot.getDriveTrain().shift(false);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

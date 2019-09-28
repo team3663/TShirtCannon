@@ -45,6 +45,12 @@ public class RobotMap
   public static final int SHOOTER_SOLENOID_RELAY = 0;
   public static final int RECHARGE_SOLENOID_RELAY = 1;
 
+  //pneumatic shifters
+  public static final int LEFT_SHIFT_SOLENOID_FORWARD = 0;
+  public static final int LEFT_SHIFT_SOLENOID_REVERSE = 1;
+  public static final int RIGHT_SHIFT_SOLENOID_FORWARD = 2;
+  public static final int RIGHT_SHIFT_SOLENOID_REVERSE = 3;
+
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
