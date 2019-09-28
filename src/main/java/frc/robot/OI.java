@@ -46,7 +46,7 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
 
   public static final int GAMEPAD = 0;
-  //josyticks
+  //joysticks
   public static final int LSTICK_X_AXIS = 0;
   public static final int LSTICK_Y_AXIS = 1;
   public static final int RSTICK_X_AXIS = 4;
@@ -54,9 +54,17 @@ public class OI {
   //triggers
   public static final int LTRIGGER_AXIS = 2;
   public static final int RTRIGGER_AXIS = 3;
-
-
+  //buttons
   public static final int BUTTON_A = 1;
+  public static final int BUTTON_B = 2;
+  public static final int BUTTON_X = 3;
+  public static final int BUTTON_Y = 4;
+  public static final int BUTTON_L_BUMPER = 5;
+  public static final int BUTTON_R_BUMPER = 6;
+  public static final int BUTTON_BACK = 7;
+  public static final int BUTTON_START = 8;
+
+
 
   private Joystick gamepad;
 
@@ -66,6 +74,13 @@ public class OI {
 
     final Button AButton = new JoystickButton(gamepad, BUTTON_A);
     AButton.whenPressed(new C_Recharge());
+
+    //C_Fire only runs if both B and X buttons are pressed 
+    final Button BButton = new JoystickButton(gamepad, BUTTON_B);
+    BButton.whenPressed(new C_Fire());
+
+    final Button XButton = new JoystickButton(gamepad, BUTTON_X);
+    XButton.whenPressed(new C_Fire());
   }
   public Joystick getGamepad() 
   {
