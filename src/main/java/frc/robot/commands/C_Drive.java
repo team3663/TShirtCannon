@@ -62,11 +62,11 @@ public class C_Drive extends Command
   private void shift()
   {
     //the order is intentional since if both bumpers are pressed, it will shift down
-    if(gamepad.getRawButton(OI.RBUMPER))
+    if(gamepad.getRawButton(OI.BUTTON_R_BUMPER))
     {
       Robot.getDriveTrain().shift(true);
     }
-    if(gamepad.getRawButton(OI.LBUMPER))
+    if(gamepad.getRawButton(OI.BUTTON_L_BUMPER))
     {
       Robot.getDriveTrain().shift(false);
     }
