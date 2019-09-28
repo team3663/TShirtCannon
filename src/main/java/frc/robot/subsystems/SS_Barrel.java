@@ -21,9 +21,9 @@ public class SS_Barrel extends Subsystem
 {
     //0 degrees is forwards, 90 degrees is up
     //positive power is upwards
-    private static final int DEFAULT_UPPER_SOFT_LIMIT = 90;
-    private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
-    private static final double SAFE_CURRENT = 3;
+    private static final int DEFAULT_UPPER_SOFT_LIMIT = 100; //TODO
+    private static final int DEFAULT_LOWER_SOFT_LIMIT = -100; //TODO
+    private static final double SAFE_CURRENT = 5;
     private static final int ANGLE_GEAR_RATIO = 1; //TODO
     private static final double DEFAULT_SPEED = 0.25;
 
@@ -132,7 +132,7 @@ public class SS_Barrel extends Subsystem
     {
         // SmartDashboard.putNumber("Barrel Encoder", encoder.get());
         // return encoder.get() * ANGLE_GEAR_RATIO;
-        return 20; //TODO
+        return 50; //TODO
     }
     
     public boolean isSafeCurrent()

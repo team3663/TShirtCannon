@@ -45,18 +45,18 @@ public class C_RotateBarrel extends Command
   {
     double speed = deadzone(Robot.getOI().getGamepad().getRawAxis(OI.RSTICK_Y_AXIS));
 
-    // if(!safeCurrent() || speed == 0 //current is unsafe or speed is 0
-    //   || (barrel.getUpperLimitHit() && speed > 0) //at upper limit and speed is going up
-    //   || (barrel.getLowerLimitHit() && speed < 0)) //at lower limit and speed is going down
-    // {
-    //   barrel.stop();
-    //   SmartDashboard.putBoolean("moveBarell", false);
-    // }
-    // else
-    // {
+    if(!safeCurrent() || speed == 0 //current is unsafe or speed is 0
+      || (barrel.getUpperLimitHit() && speed > 0) //at upper limit and speed is going up
+      || (barrel.getLowerLimitHit() && speed < 0)) //at lower limit and speed is going down
+    {
+      barrel.stop();
+      SmartDashboard.putBoolean("moveBarrel", false);
+    }
+    else
+    {
       barrel.moveConstant(speed);
     //   SmartDashboard.putBoolean("moveBarell", true);
-    // }
+    }
   }
 
   // (condiion 1)
@@ -84,7 +84,6 @@ public class C_RotateBarrel extends Command
   {
     if(Math.abs(input) <= DEADZONE)
     {
-      cutPower = false;
       return 0;
     }
     return input;
@@ -92,20 +91,28 @@ public class C_RotateBarrel extends Command
 
   private boolean safeCurrent()
   {
-    if(cutPower)
+    //stop cutting the power if the joystick returns to zero
+    if(deadzone(Robot.getOI().getGamepad().getRawAxis(OI.RSTICK_Y_AXIS)) == 0)
+    {
+      cutPower = false;
+    }
+    else if(cutPower)
     {
       return false;
     }
-    else if(barrel.isSafeCurrent())
+
+    //if the current is safe, reset the unsafe current timer
+    if(barrel.isSafeCurrent())
     {
       currentTimer.reset();
       return true;
     }
-    else if(currentTimer.getElapsedSeconds() <= 1)
+    else if(currentTimer.getElapsedSeconds() >= 1.5)
     {
-      return true;
+      //if the power is unsafe for too long, it will cut power to the barrel angle motor
+      cutPower = true;
+      return false;
     }
-    cutPower = true;
-    return false;
+    return true;
   }
 }
