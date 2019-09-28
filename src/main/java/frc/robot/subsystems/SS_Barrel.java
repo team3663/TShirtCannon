@@ -102,7 +102,8 @@ public class SS_Barrel extends Subsystem
 
     public boolean getUpperLimitHit()
     {
-        if(upperLimit.get())
+        //if(upperLimit.get())
+        if(false) //TODO
         {
             upperSoftLimit = getAngle();
             return true;
@@ -116,7 +117,8 @@ public class SS_Barrel extends Subsystem
 
     public boolean getLowerLimitHit()
     {
-        if(lowerLimit.get())
+        //if(lowerLimit.get())
+        if(false) //TODO
         {
             lowerSoftLimit = getAngle();
             return true;

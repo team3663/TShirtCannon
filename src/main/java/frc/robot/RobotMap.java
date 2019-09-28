@@ -35,10 +35,10 @@ public class RobotMap
   //DIO
   public static final int UPPER_ARM_SWITCH = 0;
   public static final int LOWER_ARM_SWITCH = 1;
-  public static final int BARREL_ENCODER_A = -1;
-  public static final int BARREL_ENCODER_B = -1;
-  public static final int FLASHY_LINE_ONE = -1;
-  public static final int FLASHY_LINE_TWO = -1;
+  public static final int BARREL_ENCODER_A = 5; //TODO
+  public static final int BARREL_ENCODER_B = 6; //TODO
+  public static final int FLASHY_LINE_ONE = 7; //TODO
+  public static final int FLASHY_LINE_TWO = 8; //TODO
 
 
   //RELAY
