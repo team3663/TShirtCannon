@@ -9,14 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.SS_PneumaticSystem;
+import frc.robot.subsystems.*;
+import frc.robot.util.*;
 
-public class C_Fire extends Command {
-
+public class C_SafetyFire extends Command {
   private SS_PneumaticSystem pneumaticSystem;
-  public C_Fire() {
+  private ElapsedTime timer;
+  public C_SafetyFire() {
     requires(Robot.getPneumaticSystem());
     pneumaticSystem = Robot.getPneumaticSystem();
+    timer = new ElapsedTime();
   }
 
   @Override
@@ -26,8 +28,13 @@ public class C_Fire extends Command {
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {    
-    return false;
+  protected boolean isFinished() {
+    boolean timeOut = timer.getElapsedSeconds() > 1;
+
+    //gets B and X buttons
+    boolean safetyButtons = Robot.getOI().getGamepad().getRawButton(2) && Robot.getOI().getGamepad().getRawButton(3);
+    
+    return timeOut || !safetyButtons;
   }
 
   @Override

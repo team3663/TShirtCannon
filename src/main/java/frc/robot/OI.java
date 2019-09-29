@@ -77,10 +77,10 @@ public class OI {
 
     //C_Fire only runs if both B and X buttons are held
     final Button BButton = new JoystickButton(gamepad, BUTTON_B);
-    BButton.whileHeld(new C_Fire());
+    BButton.whileHeld(new C_SafetyFire());
 
     final Button XButton = new JoystickButton(gamepad, BUTTON_X);
-    XButton.whileHeld(new C_Fire());
+    XButton.whileHeld(new C_SafetyFire());
 
     final Button YButton = new JoystickButton(gamepad, BUTTON_Y);
     YButton.whileHeld(new C_Fire());
