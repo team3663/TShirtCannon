@@ -73,14 +73,17 @@ public class OI {
     gamepad = new Joystick(RobotMap.GAMEPAD);
 
     final Button AButton = new JoystickButton(gamepad, BUTTON_A);
-    AButton.whenPressed(new C_Recharge());
+    AButton.whileHeld(new C_Recharge());
 
-    //C_Fire only runs if both B and X buttons are pressed 
+    //C_Fire only runs if both B and X buttons are held
     final Button BButton = new JoystickButton(gamepad, BUTTON_B);
-    BButton.whenPressed(new C_Fire());
+    BButton.whileHeld(new C_Fire());
 
     final Button XButton = new JoystickButton(gamepad, BUTTON_X);
-    XButton.whenPressed(new C_Fire());
+    XButton.whileHeld(new C_Fire());
+
+    final Button YButton = new JoystickButton(gamepad, BUTTON_Y);
+    YButton.whileHeld(new C_Fire());
   }
   public Joystick getGamepad() 
   {

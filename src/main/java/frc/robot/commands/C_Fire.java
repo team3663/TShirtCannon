@@ -35,8 +35,8 @@ public class C_Fire extends Command {
 
     //gets B and X buttons
     boolean safetyButtons = Robot.getOI().getGamepad().getRawButton(2) && Robot.getOI().getGamepad().getRawButton(3);
-
-    return timeOut || !safetyButtons;
+    
+    return false; //timeOut || !safetyButtons;
   }
 
   @Override

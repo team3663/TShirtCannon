@@ -25,7 +25,7 @@ public class SS_Barrel extends Subsystem
     private static final int DEFAULT_LOWER_SOFT_LIMIT = -100; //TODO
     private static final double SAFE_CURRENT = 5;
     private static final int ANGLE_GEAR_RATIO = 1; //TODO
-    private static final double DEFAULT_SPEED = 0.25;
+    private static final double DEFAULT_SPEED = 0.15;
 
     //motors
     private TalonSRX leadMotor;
