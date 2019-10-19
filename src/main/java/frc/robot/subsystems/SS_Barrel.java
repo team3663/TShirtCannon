@@ -9,9 +9,12 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.C_RotateBarrel;
@@ -24,24 +27,26 @@ public class SS_Barrel extends Subsystem
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 100; //TODO
     private static final int DEFAULT_LOWER_SOFT_LIMIT = -100; //TODO
     private static final double SAFE_CURRENT = 5;
-    private static final int ANGLE_GEAR_RATIO = 1; //TODO
     private static final double DEFAULT_SPEED = 0.15;
+    //potentiometer constants
+    private static final double POT_FULL_RANGE = 0;
+    private static final double POT_OFFSET = 360;
+    private static final int LIMIT_BUFFER = 2;
 
     //motors
     private TalonSRX leadMotor;
     private TalonSRX followMotor;
 
-
     //limit switches
     private DigitalInput upperLimit;
     private DigitalInput lowerLimit;
 
-    //Encoder
-    private Encoder encoder;
-
     //software limits
-    private int upperSoftLimit;
-    private int lowerSoftLimit;
+    private double upperSoftLimit;
+    private double lowerSoftLimit;
+
+    //Potentiometer
+    private Potentiometer anglePot;
 
     public SS_Barrel()
     {
@@ -61,8 +66,11 @@ public class SS_Barrel extends Subsystem
         upperSoftLimit = DEFAULT_UPPER_SOFT_LIMIT;
         lowerSoftLimit = DEFAULT_LOWER_SOFT_LIMIT;
 
-        //init encoder
-        encoder = new Encoder(RobotMap.BARREL_ENCODER_A, RobotMap.BARREL_ENCODER_B);
+        //init potentiometer
+        //first parameter: channel    The analog channel this potentiometer is plugged into.
+        //second parameter: fullRange The scaling to multiply the fraction by to get a meaningful unit.
+        //third parameter: offset     The offset to add to the scaled value for controlling the zero value
+        anglePot = new AnalogPotentiometer(RobotMap.BARREL_ANGLE_POT, POT_FULL_RANGE, POT_OFFSET);
     }
 
     @Override
@@ -102,10 +110,9 @@ public class SS_Barrel extends Subsystem
 
     public boolean getUpperLimitHit()
     {
-        //if(upperLimit.get())
-        if(false) //TODO
+        if(upperLimit.get())
         {
-            upperSoftLimit = getAngle();
+            upperSoftLimit = getAngle() - LIMIT_BUFFER;
             return true;
         }
         else if(getAngle() >= upperSoftLimit)
@@ -117,10 +124,9 @@ public class SS_Barrel extends Subsystem
 
     public boolean getLowerLimitHit()
     {
-        //if(lowerLimit.get())
-        if(false) //TODO
+        if(lowerLimit.get())
         {
-            lowerSoftLimit = getAngle();
+            lowerSoftLimit = getAngle() + LIMIT_BUFFER;
             return true;
         }
         else if(getAngle() <= lowerSoftLimit)
@@ -130,11 +136,9 @@ public class SS_Barrel extends Subsystem
         return false;
     }
 
-    public int getAngle()
+    public double getAngle()
     {
-        // SmartDashboard.putNumber("Barrel Encoder", encoder.get());
-        // return encoder.get() * ANGLE_GEAR_RATIO;
-        return 50; //TODO
+        return anglePot.get();
     }
     
     public boolean isSafeCurrent()

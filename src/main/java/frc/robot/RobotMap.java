@@ -40,8 +40,8 @@ public class RobotMap
   public static final int FLASHY_LINE_ONE = 7; //TODO
   public static final int FLASHY_LINE_TWO = 8; //TODO
 
-
-
+  //Analog
+  public static final int BARREL_ANGLE_POT = 0;
 
   //RELAY
   public static final int SHOOTER_SOLENOID_RELAY = 0;
