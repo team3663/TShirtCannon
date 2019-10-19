@@ -40,15 +40,17 @@ public class C_Drive extends Command
     double rightSpeed = 0;
 
     //calculations for arcade drive
-    if(steer > 0)
+    if(steer > 0.2)
     {
       leftSpeed = speed;
-      rightSpeed = (0.5 - Math.abs(steer)) * speed * 2;
+      // rightSpeed = (0.5 - Math.abs(steer)) * speed * 2;
+      rightSpeed = -speed;
     }
-    else if(steer < 0)
+    else if(steer < -0.2)
     {
-      leftSpeed = (0.5 - Math.abs(steer)) * speed * 2;
+      //leftSpeed = (0.5 - Math.abs(steer)) * speed * 2;
       rightSpeed = speed;
+      leftSpeed = -speed;
     }
     else
     {
