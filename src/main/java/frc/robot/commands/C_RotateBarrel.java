@@ -50,6 +50,7 @@ public class C_RotateBarrel extends Command
     SmartDashboard.putBoolean("lower Limit unsafe", barrel.getLowerLimitHit() && speed < 0);
     SmartDashboard.putBoolean("not moving barrel", speed == 0);
     SmartDashboard.putBoolean("barrel current unsafe", !safeCurrent());
+    SmartDashboard.putNumber("Barrel Angle:", barrel.getAngle());
 
     if(!safeCurrent() //current is unsafe
       || speed == 0 //speed is 0
