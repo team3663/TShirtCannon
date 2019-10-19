@@ -17,6 +17,8 @@ public class SS_DriveTrain extends Subsystem
   //shifting solenoids
   private DoubleSolenoid rightShift;
   private DoubleSolenoid leftShift;
+
+  private int ampCap = 25;
   
   public SS_DriveTrain()
   {
@@ -43,10 +45,10 @@ public class SS_DriveTrain extends Subsystem
 
   public void drive(double leftSpeed, double rightSpeed)
   {
-    leftMotorFront.set(ControlMode.PercentOutput,leftSpeed);
-    leftMotorRear.set(ControlMode.PercentOutput, leftSpeed);
-    rightMotorFront.set(ControlMode.PercentOutput, -1 * rightSpeed);
-    rightMotorRear.set(ControlMode.PercentOutput, -1 * rightSpeed);
+    leftMotorFront.set(ControlMode.PercentOutput,leftSpeed/2);
+    leftMotorRear.set(ControlMode.PercentOutput, leftSpeed/2);
+    rightMotorFront.set(ControlMode.PercentOutput, -1 * rightSpeed/2);
+    rightMotorRear.set(ControlMode.PercentOutput, -1 * rightSpeed/2);
   }
 
   public void shift(boolean shiftUp)
