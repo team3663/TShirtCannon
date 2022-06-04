@@ -22,7 +22,7 @@ public class SS_Barrel extends SubsystemBase
     //positive power is upwards
     private static final int DEFAULT_UPPER_SOFT_LIMIT = 100; //TODO
     private static final int DEFAULT_LOWER_SOFT_LIMIT = -100; //TODO
-    private static final double SAFE_CURRENT = 5;
+    private static final double SAFE_CURRENT = 50; // 5
     private static final double DEFAULT_SPEED = 0.15;
     //potentiometer constants
     private static final double POT_FULL_RANGE = 0;
@@ -134,7 +134,7 @@ public class SS_Barrel extends SubsystemBase
     public boolean isSafeCurrent()
     {
         //take the avarage current of the two motors and see if it is a safe current
-        SmartDashboard.putNumber("Barrel Current", (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2);
-        return (leadMotor.getOutputCurrent() + followMotor.getOutputCurrent()) / 2 <= SAFE_CURRENT;
+        SmartDashboard.putNumber("Barrel Current", (leadMotor.getSupplyCurrent() + followMotor.getSupplyCurrent()) / 2);
+        return (leadMotor.getSupplyCurrent() + followMotor.getSupplyCurrent()) / 2 <= SAFE_CURRENT;
     }
 }

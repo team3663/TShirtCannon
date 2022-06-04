@@ -46,13 +46,14 @@ public class C_RotateBarrel extends CommandBase
     SmartDashboard.putBoolean("upper Limit unsafe", barrel.getUpperLimitHit() && speed > 0);
     SmartDashboard.putBoolean("lower Limit unsafe", barrel.getLowerLimitHit() && speed < 0);
     SmartDashboard.putBoolean("not moving barrel", speed == 0);
-    SmartDashboard.putBoolean("barrel current unsafe", !safeCurrent());
+    // SmartDashboard.putBoolean("barrel current unsafe", !safeCurrent());
     SmartDashboard.putNumber("Barrel Angle:", barrel.getAngle());
 
-    if(!safeCurrent() //current is unsafe
-      || speed == 0 //speed is 0
+    if(//!safeCurrent() || //current is unsafe
+      speed == 0 //speed is 0
       || (barrel.getUpperLimitHit() && speed > 0) //at upper limit and speed is going up
-      || (barrel.getLowerLimitHit() && speed < 0)) //at lower limit and speed is going down
+      || (barrel.getLowerLimitHit() && speed < 0) //at lower limit and speed is going down
+      ) 
     {
       barrel.stop();
       SmartDashboard.putBoolean("moveBarrel", false);
@@ -73,6 +74,7 @@ public class C_RotateBarrel extends CommandBase
     return input;
   }
 
+  /*
   private boolean safeCurrent()
   {
     //stop cutting the power if the joystick returns to zero
@@ -99,4 +101,5 @@ public class C_RotateBarrel extends CommandBase
     }
     return true;
   }
+  */
 }
