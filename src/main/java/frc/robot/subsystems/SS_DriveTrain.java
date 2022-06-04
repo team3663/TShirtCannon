@@ -2,12 +2,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import frc.robot.commands.C_Drive;
 
-public class SS_DriveTrain extends Subsystem 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
+
+public class SS_DriveTrain extends SubsystemBase 
 {
   //drive motors
   private TalonSRX leftMotorFront;
@@ -28,17 +29,11 @@ public class SS_DriveTrain extends Subsystem
     rightMotorFront = new TalonSRX(RobotMap.RF_MOTOR);    // CAN Bus DeviceID 1 is the right drive motor
     rightMotorRear = new TalonSRX(RobotMap.RR_MOTOR);
     //init shifting solenoids
-    rightShift = new DoubleSolenoid(RobotMap.RIGHT_SHIFT_SOLENOID_FORWARD, RobotMap.RIGHT_SHIFT_SOLENOID_REVERSE);
-    leftShift = new DoubleSolenoid(RobotMap.LEFT_SHIFT_SOLENOID_FORWARD, RobotMap.LEFT_SHIFT_SOLENOID_REVERSE);
+    rightShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.RIGHT_SHIFT_SOLENOID_FORWARD, RobotMap.RIGHT_SHIFT_SOLENOID_REVERSE);
+    leftShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.LEFT_SHIFT_SOLENOID_FORWARD, RobotMap.LEFT_SHIFT_SOLENOID_REVERSE);
 
     //set the shifters to the lower gear
     shift(false);
-  }
-
-  @Override
-  public void initDefaultCommand() 
-  {
-    setDefaultCommand(new C_Drive());
   }
 
   public void timeDrive() {}
