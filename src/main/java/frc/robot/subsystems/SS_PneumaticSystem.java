@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Relay.Value;
 /**
  * Add your docs here.
  */
-public class SS_PneumaticSystem extends Subsystem {
+public class SS_PneumaticSystem extends SubsystemBase {
 
   Relay shooterSolenoid = new Relay(RobotMap.SHOOTER_SOLENOID_RELAY);
   Relay rechargeSolenoid = new Relay(RobotMap.RECHARGE_SOLENOID_RELAY);
@@ -38,10 +38,5 @@ public class SS_PneumaticSystem extends Subsystem {
   public void closeRechargeSolenoid() 
   {
     rechargeSolenoid.set(Value.kOff);
-  }
-  
-  @Override
-  public void initDefaultCommand() {
-    
   }
 }

@@ -7,28 +7,28 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
 import frc.robot.util.*;
 
-public class C_SafetyFire extends Command {
+public class C_SafetyFire extends CommandBase {
   private SS_PneumaticSystem pneumaticSystem;
   private ElapsedTime timer;
   public C_SafetyFire() {
-    requires(Robot.getPneumaticSystem());
+    addRequirements(Robot.getPneumaticSystem());
     pneumaticSystem = Robot.getPneumaticSystem();
     timer = new ElapsedTime();
   }
 
   @Override
-  protected void initialize() {
+  public void initialize() {
     pneumaticSystem.openShooterSolenoid();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     boolean timeOut = timer.getElapsedSeconds() > 1;
 
     //gets B and X buttons
@@ -38,12 +38,7 @@ public class C_SafetyFire extends Command {
   }
 
   @Override
-  protected void end() {
+  public void end(boolean interrupted) {
     pneumaticSystem.closeShooterSolenoid();
-  }
-
-  @Override
-  protected void interrupted() {
-    end();
   }
 }

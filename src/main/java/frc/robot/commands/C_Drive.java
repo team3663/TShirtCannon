@@ -1,13 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.*;
 
 
 
-public class C_Drive extends Command 
+public class C_Drive extends CommandBase 
 {
   private Joystick gamepad;
   
@@ -15,17 +14,13 @@ public class C_Drive extends Command
   {
     // Use requires() here to declare subsystem dependencies
     //requires(Robot.m_subsystem);
-    requires(Robot.getDriveTrain());
+    addRequirements(Robot.getDriveTrain());
     gamepad = Robot.getOI().getGamepad();
   }
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {}
-
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
+  public void execute() 
   {
     //tank drive code   
     // double leftSpeed = Math.pow(gamepad.getRawAxis(OI.LSTICK_Y_AXIS) , 2) * Math.signum(gamepad.getRawAxis(OI.LSTICK_Y_AXIS)); // make forward stick positive
@@ -73,20 +68,4 @@ public class C_Drive extends Command
       Robot.getDriveTrain().shift(false);
     }
   }
-
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() 
-  {
-    return false;
-  }
-
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {}
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {}
 }

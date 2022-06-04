@@ -12,15 +12,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
-import frc.robot.commands.C_RotateBarrel;
-import edu.wpi.first.wpilibj.Encoder;
 
-public class SS_Barrel extends Subsystem 
+public class SS_Barrel extends SubsystemBase 
 {
     //0 degrees is forwards, 90 degrees is up
     //positive power is upwards
@@ -46,7 +42,7 @@ public class SS_Barrel extends Subsystem
     private double lowerSoftLimit;
 
     //Potentiometer
-    private Potentiometer anglePot;
+    private AnalogPotentiometer anglePot;
 
     public SS_Barrel()
     {
@@ -71,12 +67,6 @@ public class SS_Barrel extends Subsystem
         //second parameter: fullRange The scaling to multiply the fraction by to get a meaningful unit.
         //third parameter: offset     The offset to add to the scaled value for controlling the zero value
         anglePot = new AnalogPotentiometer(RobotMap.BARREL_ANGLE_POT, POT_FULL_RANGE, POT_OFFSET);
-    }
-
-    @Override
-    public void initDefaultCommand() 
-    {
-        setDefaultCommand(new C_RotateBarrel());
     }
 
     public void moveConstant(double speed)

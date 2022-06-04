@@ -8,23 +8,16 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
-import frc.robot.commands.C_Billboard;
 
 /**
  * Add your docs here.
  */
-public class SS_Billboard extends Subsystem {
+public class SS_Billboard extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   public DigitalOutput FlashyLineOne = new DigitalOutput(RobotMap.FLASHY_LINE_ONE);
   public DigitalOutput FlashyLineTwo = new DigitalOutput(RobotMap.FLASHY_LINE_TWO);
-
-  @Override
-  public void initDefaultCommand() 
-  {
-    setDefaultCommand(new C_Billboard());
-  }
 }

@@ -7,36 +7,32 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.SS_PneumaticSystem;
 
-public class C_Recharge extends Command {
+public class C_Recharge extends CommandBase {
   private SS_PneumaticSystem pneumaticSystem;
 
   public C_Recharge() {
-    requires(Robot.getPneumaticSystem());
+    addRequirements(Robot.getPneumaticSystem());
     pneumaticSystem = Robot.getPneumaticSystem();
   }
 
   @Override
-  protected void initialize() {
+  public void initialize() {
     pneumaticSystem.openRechargeSolenoid();
   }
 
   
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return false;
   }
 
   @Override
-  protected void end() {
+  public void end(boolean interrupted) {
     pneumaticSystem.closeRechargeSolenoid();
   }
 
-  @Override
-  protected void interrupted() {
-    end();
-  }
 }
