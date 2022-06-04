@@ -62,12 +62,12 @@ public class Robot extends TimedRobot
     ss_Billboard = new SS_Billboard();
     ss_PneumaticSystem = new SS_PneumaticSystem();
 
+    oi = new OI(); // oi must be initilized last PLEASE
+    oi.registerControls();
+
     ss_DriveTrain.setDefaultCommand(new C_Drive());
     ss_Barrel.setDefaultCommand(new C_RotateBarrel());
     ss_Billboard.setDefaultCommand(new C_Billboard());
-
-    oi = new OI(); // oi must be initilized last PLEASE
-    oi.registerControls();
   }
 
   public static SS_DriveTrain getDriveTrain() 
