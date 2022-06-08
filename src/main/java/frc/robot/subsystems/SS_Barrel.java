@@ -134,7 +134,7 @@ public class SS_Barrel extends SubsystemBase
     public boolean isSafeCurrent()
     {
         //take the avarage current of the two motors and see if it is a safe current
-        SmartDashboard.putNumber("Barrel Current", (leadMotor.getSupplyCurrent() + followMotor.getSupplyCurrent()) / 2);
-        return (leadMotor.getSupplyCurrent() + followMotor.getSupplyCurrent()) / 2 <= SAFE_CURRENT;
+        SmartDashboard.putNumber("Barrel Current", (leadMotor.getStatorCurrent() + followMotor.getStatorCurrent()) / 2);
+        return (leadMotor.getStatorCurrent() + followMotor.getStatorCurrent()) / 2 <= SAFE_CURRENT;
     }
 }
