@@ -20,13 +20,13 @@ public class SS_Barrel extends SubsystemBase
 {
     //0 degrees is forwards, 90 degrees is up
     //positive power is upwards
-    private static final int DEFAULT_UPPER_SOFT_LIMIT = 100; //TODO
-    private static final int DEFAULT_LOWER_SOFT_LIMIT = -100; //TODO
-    private static final double SAFE_CURRENT = 50; // 5
+    private static final int DEFAULT_UPPER_SOFT_LIMIT = 80; 
+    private static final int DEFAULT_LOWER_SOFT_LIMIT = 0;
+    private static final double SAFE_CURRENT = 5;
     private static final double DEFAULT_SPEED = 0.15;
     //potentiometer constants
-    private static final double POT_FULL_RANGE = 0;
-    private static final double POT_OFFSET = 360;
+    private static final double POT_FULL_RANGE = 360;
+    private static final double POT_OFFSET = -18;
     private static final int LIMIT_BUFFER = 2;
 
     //motors
@@ -100,7 +100,7 @@ public class SS_Barrel extends SubsystemBase
 
     public boolean getUpperLimitHit()
     {
-        if(upperLimit.get())
+        if(!upperLimit.get())
         {
             upperSoftLimit = getAngle() - LIMIT_BUFFER;
             return true;
@@ -114,7 +114,7 @@ public class SS_Barrel extends SubsystemBase
 
     public boolean getLowerLimitHit()
     {
-        if(lowerLimit.get())
+        if(!lowerLimit.get())
         {
             lowerSoftLimit = getAngle() + LIMIT_BUFFER;
             return true;

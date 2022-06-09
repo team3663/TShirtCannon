@@ -64,13 +64,10 @@ public class OI {
   public static final int BUTTON_BACK = 7;
   public static final int BUTTON_START = 8;
 
-
-
   private Joystick gamepad;
 
-  public void registerControls() 
-  {
-    gamepad = new Joystick(RobotMap.GAMEPAD);
+  public void registerControls() {
+    gamepad = new Joystick(GAMEPAD);
 
     final Button AButton = new JoystickButton(gamepad, BUTTON_A);
     AButton.whileHeld(new C_Recharge());
@@ -85,8 +82,8 @@ public class OI {
     final Button YButton = new JoystickButton(gamepad, BUTTON_Y);
     YButton.whileHeld(new C_Fire());
   }
-  public Joystick getGamepad() 
-  {
+
+  public Joystick getGamepad() {
     return gamepad;
   }
 }

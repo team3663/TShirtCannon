@@ -20,9 +20,6 @@ public class RobotMap
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-  //gamepads
-  public static final int GAMEPAD = 0;
-
   //motors
   public static final int LR_MOTOR = 0;
   public static final int LF_MOTOR = 1;
